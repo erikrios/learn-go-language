@@ -6,7 +6,13 @@ import (
 )
 
 func main() {
-	app := fiber.New()
+	app := fiber.New(fiber.Config{
+		Prefork:       true,
+		CaseSensitive: true,
+		StrictRouting: true,
+		ServerHeader:  "Fiber",
+		AppName:       "Fiber Rest API",
+	})
 
 	const port = ":3000"
 
