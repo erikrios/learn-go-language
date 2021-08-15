@@ -10,6 +10,8 @@ func main() {
 
 	const port = ":3000"
 
+	app.Static("/static", "./files")
+
 	app.Get("/", func(ctx *fiber.Ctx) error {
 		return ctx.JSON(map[string]interface{}{
 			"status":       "success",
