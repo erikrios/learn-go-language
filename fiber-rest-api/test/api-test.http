@@ -2,3 +2,7 @@ GET http://localhost:3000/
 Accept: application/json
 
 ###
+GET http://localhost:3000/Erik
+Accept: application/json
+
+###
