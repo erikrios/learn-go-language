@@ -7,9 +7,9 @@ import (
 
 func main() {
 	app := fiber.New(fiber.Config{
-		Prefork:       true,
-		CaseSensitive: true,
-		StrictRouting: true,
+		Prefork:       false,
+		CaseSensitive: false,
+		StrictRouting: false,
 		ServerHeader:  "Fiber",
 		AppName:       "Fiber Rest API",
 	})
