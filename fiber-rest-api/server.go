@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -15,6 +16,17 @@ func main() {
 			"errorMessage": nil,
 			"data": map[string]string{
 				"message": "Hello, World!",
+			},
+		})
+	})
+
+	app.Get("/:name", func(ctx *fiber.Ctx) error {
+		name := ctx.Params("name")
+		return ctx.JSON(map[string]interface{}{
+			"status":       "success",
+			"errorMessage": nil,
+			"data": map[string]string{
+				"message": fmt.Sprintf("Hello, %s!", name),
 			},
 		})
 	})
