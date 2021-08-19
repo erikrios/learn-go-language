@@ -80,3 +80,19 @@ func (q *BookQueries) updateBook(id uuid.UUID, b *models.Book) error {
 	// This query returns nothing.
 	return nil
 }
+
+// DeleteBook method for delete book by given ID.
+func (q *BookQueries) DeleteBook(id uuid.UUID) error {
+	// Define query string.
+	query := `DELETE FROM books WHERE id = $1`
+
+	// Send query to database.
+	_, err := q.Exec(query, id)
+	if err != nil {
+		// Return only error.
+		return err
+	}
+
+	// This query returns nothing.
+	return nil
+}
