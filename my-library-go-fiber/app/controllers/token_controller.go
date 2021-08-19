@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"LearnGoLanguage/my-library-go-fiber/app/utils"
+	utils2 "LearnGoLanguage/my-library-go-fiber/pkg/utils"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -15,7 +15,7 @@ import (
 // @Router /v1/token/new [get]
 func GetNewAccessToken(c *fiber.Ctx) error {
 	// Generate a new Access token.
-	token, err := utils.GenerateNewAccessToken()
+	token, err := utils2.GenerateNewAccessToken()
 	if err != nil {
 		// Return stsatus 500 and token generation error.
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{

@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"LearnGoLanguage/my-library-go-fiber/app/models"
-	"LearnGoLanguage/my-library-go-fiber/app/utils"
+	utils2 "LearnGoLanguage/my-library-go-fiber/pkg/utils"
 	"LearnGoLanguage/my-library-go-fiber/platform/database"
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
@@ -114,7 +114,7 @@ func CreateBook(c *fiber.Ctx) error {
 	now := time.Now().Unix()
 
 	// Get claims from JWT.
-	claims, err := utils.ExtractTokenMetadata(c)
+	claims, err := utils2.ExtractTokenMetadata(c)
 	if err != nil {
 		// Return status 401 and JWT parse error.
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
@@ -158,7 +158,7 @@ func CreateBook(c *fiber.Ctx) error {
 	}
 
 	// Create a new validator for a book model.
-	validate := utils.NewValidator()
+	validate := utils2.NewValidator()
 
 	// Set initialized default data for book:
 	book.ID = uuid.New()
@@ -170,7 +170,7 @@ func CreateBook(c *fiber.Ctx) error {
 		// Return, if some fields are not valid.
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"error": true,
-			"msg":   utils.ValidatorErrors(err),
+			"msg":   utils2.ValidatorErrors(err),
 		})
 	}
 
@@ -210,7 +210,7 @@ func UpdateBook(c *fiber.Ctx) error {
 	now := time.Now().Unix()
 
 	// Get claims from JWT.
-	claims, err := utils.ExtractTokenMetadata(c)
+	claims, err := utils2.ExtractTokenMetadata(c)
 	if err != nil {
 		// Return status 401 and JWT parse error.
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
@@ -267,14 +267,14 @@ func UpdateBook(c *fiber.Ctx) error {
 	book.UpdatedAt = time.Now()
 
 	// Create a new validator for a Book model.
-	validate := utils.NewValidator()
+	validate := utils2.NewValidator()
 
 	// Validate book fields.
 	if err := validate.Struct(book); err != nil {
 		// Return, if some fields are not valid.
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"error": true,
-			"msg":   utils.ValidatorErrors(err),
+			"msg":   utils2.ValidatorErrors(err),
 		})
 	}
 
@@ -306,7 +306,7 @@ func DeleteBook(c *fiber.Ctx) error {
 	now := time.Now().Unix()
 
 	// Get claims from JWT.
-	claims, err := utils.ExtractTokenMetadata(c)
+	claims, err := utils2.ExtractTokenMetadata(c)
 	if err != nil {
 		// Return status 401 and JWT parse error.
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
@@ -340,14 +340,14 @@ func DeleteBook(c *fiber.Ctx) error {
 	}
 
 	// Create a new validator for a Book model.
-	validate := utils.NewValidator()
+	validate := utils2.NewValidator()
 
 	// Validate only one book field ID.
 	if err := validate.StructPartial(book, "id"); err != nil {
 		// Return, if some fields are not valid.
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"error": true,
-			"msg":   utils.ValidatorErrors(err),
+			"msg":   utils2.ValidatorErrors(err),
 		})
 	}
 
