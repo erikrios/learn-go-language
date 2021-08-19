@@ -48,3 +48,19 @@ func (q *BookQueries) GetBook(id uuid.UUID) (models.Book, error) {
 	// Return query result.
 	return book, nil
 }
+
+// CreateBook method for crating book by given Book object.
+func (q *BookQueries) createBook(b *models.Book) error {
+	// Define query string.
+	query := `INSERT INTO books VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`
+
+	// Send query to database.
+	_, err := q.Exec(query, b.ID, b.CreatedAt, b.UpdatedAt, b.UserId, b.Title, b.Author, b.BookStatus, b.BookAttrs)
+	if err != nil {
+		// Return only error.
+		return err
+	}
+
+	// This query returns nothing.
+	return nil
+}
