@@ -64,3 +64,19 @@ func (q *BookQueries) createBook(b *models.Book) error {
 	// This query returns nothing.
 	return nil
 }
+
+// UpdateBook method for updating book by given Book object.
+func (q *BookQueries) updateBook(id uuid.UUID, b *models.Book) error {
+	// Define query string.
+	query := `UPDATE books SET updated_at = $2, title = $3, author = $4, book_status = $5, book_attrs = $6 WHERE id = $1`
+
+	// Send query to database.
+	_, err := q.Exec(query, id, b.UpdatedAt, b.Title, b.Author, b.BookStatus, b.BookAttrs)
+	if err != nil {
+		// Return only error.
+		return err
+	}
+
+	// This query returns nothing.
+	return nil
+}
