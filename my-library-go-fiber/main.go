@@ -5,7 +5,9 @@ import (
 	"LearnGoLanguage/my-library-go-fiber/pkg/middleware"
 	"LearnGoLanguage/my-library-go-fiber/pkg/routes"
 	utils2 "LearnGoLanguage/my-library-go-fiber/pkg/utils"
+	"fmt"
 	"github.com/gofiber/fiber/v2"
+	"github.com/joho/godotenv"
 )
 
 // @title API
@@ -21,6 +23,10 @@ import (
 // @name Authorization
 // @BasePath /api
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		fmt.Printf("Error: %v", err)
+	}
 	// Define Fiber config.
 	config := configs.FiberConfig()
 
