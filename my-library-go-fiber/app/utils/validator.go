@@ -6,7 +6,7 @@ import (
 )
 
 // NewValidator func for crate a new validator for model fields.
-func newValidator() *validator.Validate {
+func NewValidator() *validator.Validate {
 	// Create a new validator foa a Book model.
 	validate := validator.New()
 
