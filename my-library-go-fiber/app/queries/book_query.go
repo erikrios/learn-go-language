@@ -50,7 +50,7 @@ func (q *BookQueries) GetBook(id uuid.UUID) (models.Book, error) {
 }
 
 // CreateBook method for crating book by given Book object.
-func (q *BookQueries) createBook(b *models.Book) error {
+func (q *BookQueries) CreateBook(b *models.Book) error {
 	// Define query string.
 	query := `INSERT INTO books VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`
 
@@ -66,7 +66,7 @@ func (q *BookQueries) createBook(b *models.Book) error {
 }
 
 // UpdateBook method for updating book by given Book object.
-func (q *BookQueries) updateBook(id uuid.UUID, b *models.Book) error {
+func (q *BookQueries) UpdateBook(id uuid.UUID, b *models.Book) error {
 	// Define query string.
 	query := `UPDATE books SET updated_at = $2, title = $3, author = $4, book_status = $5, book_attrs = $6 WHERE id = $1`
 
