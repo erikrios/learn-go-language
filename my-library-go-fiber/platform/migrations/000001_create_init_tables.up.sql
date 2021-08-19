@@ -8,7 +8,7 @@ TIMEZONE="Asia/Bangkok"
 
 -- Create books table
 CREATE TABLE books (
-    id UUID DEFAULT uuid_generate_vd () PRIMARY KEY,
+    id UUID DEFAULT uuid_generate_v4 () PRIMARY KEY,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW (),
     updated_at TIMESTAMP NULL,
     title VARCHAR (255) NOT NULL,
